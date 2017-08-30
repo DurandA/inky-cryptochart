@@ -12,6 +12,8 @@ from PIL import Image, ImageDraw, ImageFont
 parser = argparse.ArgumentParser(
     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument("--pair", default='XETHZUSD', help="currency pair")
+parser.add_argument('--flip', dest='flip', action='store_true', help="rotate the display")
+parser.set_defaults(flip=False)
 parser.add_argument("--output", help="save plot as png")
 args = parser.parse_args()
 
@@ -42,8 +44,10 @@ with io.BytesIO() as f:
     ypos = 0 if ymax - last_high > last_low - ymin else h - 6
 
     if not args.output:
-        from inkyphat import RED, BLACK, text, set_image, show
+        from inkyphat import RED, BLACK, text, set_image, set_rotation, show
         set_image(i)
+        if args.flip:
+            set_rotation(180)
     else:
         RED = (255,0,0)
         BLACK = (0,0,0)
