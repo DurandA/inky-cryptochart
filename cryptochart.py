@@ -9,13 +9,15 @@ except ImportError:
     from matplotlib.finance import candlestick_ohlc
 from PIL import Image, ImageDraw, ImageFont
 
-parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser(
+    formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+parser.add_argument("--pair", default='XETHZUSD', help="currency pair")
 parser.add_argument("--output", help="save plot as png")
 args = parser.parse_args()
 
 yesterday = datetime.now() - timedelta(hours=12)
 
-quotes = quotes_historical_kraken_ohlc('XETHZUSD', yesterday, interval=15)
+quotes = quotes_historical_kraken_ohlc(args.pair, yesterday, interval=15)
 if len(quotes) == 0:
     raise SystemExit
 
@@ -48,7 +50,7 @@ with io.BytesIO() as f:
         text = d.text
 
     text((148, ypos), '{:.2f}'.format(last_close), BLACK, font)
-    text((176, ypos), 'XETHZUSD', RED, font)
+    text((176, ypos), args.pair, RED, font)
 
     if args.output:
         i.save(args.output)
