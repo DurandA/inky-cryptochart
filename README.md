@@ -20,10 +20,10 @@ optional arguments:
 
 ## Configure crontab
 
-Allow file execution with `chmod +x cryptochart.py` and use `crontab -e` to add run the cronjob every 15 minutes:
+Use `crontab -e` to add run the cronjob every 15 minutes:
 
 ```
-*/15 * * * * /home/user/cryptochart/cryptochart.py --pair XETHZUSD
+*/15 * * * * (cd /home/user/inky-cryptochart; python3 cryptochart.py --pair XETHZUSD --flip)
 ```
 
 If you are not familiar with cron, have a look at the excellent [CronHowto](https://help.ubuntu.com/community/CronHowto) wiki to configure it according to your requirements.
