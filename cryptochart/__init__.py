@@ -12,7 +12,7 @@ plt.rcParams['text.antialiased'] = False
 
 for label in ax.get_yticklabels() :
     label.set_fontproperties(ticks_font)
-ax.yaxis.set_tick_params(pad=2)
+ax.yaxis.set_tick_params(pad=2, width=1)
 
 #ax.tick_params(labelsize=8)
 ax.xaxis.set_ticks([])
