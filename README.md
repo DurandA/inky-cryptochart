@@ -2,7 +2,7 @@
 
 CLI tool to display cryptocurrency candlestick chart on [Pimoroni Inky pHAT](https://shop.pimoroni.com/products/inky-phat) or [Waveshare 2.13inch E-Ink display HAT](https://www.waveshare.com/2.13inch-e-paper-hat-b.htm)
 
-![](http://redcorner.io/images/inky-cryptochart.jpg)
+![](https://github.com/DurandA/inky-cryptochart/wiki/images/inky-cryptochart.jpg)
 
 04b03 freeware font by [04](http://www.04.jp.org/).
 
