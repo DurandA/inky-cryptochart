@@ -43,26 +43,29 @@ with io.BytesIO() as f:
         f, dpi=dpi, cmap="bwr", interpolation="none", origin="lower", pad_inches=0
     )  # bbox_inches='tight')
     f.seek(0)
-    i = Image.open(f)  # .convert('P', palette=(0,1,2))
-    d = ImageDraw.Draw(i)
+    img = Image.open(f)  # .convert('P', palette=(0,1,2))
+    draw = ImageDraw.Draw(img)
     ypos = 0 if ymax - last_high > last_low - ymin else h - 6
 
     if not args.output:
-        from inkyphat import RED, BLACK, text, set_image, set_rotation, show
+        # from inkyphat import RED, BLACK, text, set_image, set_rotation, show
+        from inky import InkyPHAT
+        inky_display = InkyPHAT("yellow")
+        inky_display.set_border(inky_display.BLACK)
 
-        set_image(i)
+        inky_display.set_image(img)
         if args.flip:
-            set_rotation(180)
+            inky_display.set_rotation(180)
     else:
         RED = (255, 0, 0)
         BLACK = (0, 0, 0)
-        text = d.text
+        text = draw.text
 
-    text((148, ypos), "{:.2f}".format(last_close), BLACK, font)
-    text((176, ypos), args.pair, RED, font)
+    draw.text((148, ypos), "{:.2f}".format(last_close), BLACK, font)
+    draw.text((176, ypos), args.pair, RED, font)
 
     if args.output:
-        i.save(args.output)
+        img.save(args.output)
         raise SystemExit
 
-    show()
+    inky_display.show()
