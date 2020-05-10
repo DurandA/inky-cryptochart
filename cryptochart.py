@@ -18,7 +18,7 @@ parser.add_argument(
 parser.set_defaults(flip=False)
 parser.add_argument("--output", help="save plot as png")
 parser.add_argument(
-    "--color",
+    "--colour",
     default="black",
     choices=["red", "black", "yellow"],
     help="ePaper display colour",
@@ -56,7 +56,8 @@ with io.BytesIO() as f:
     if not args.output:
         from inky import InkyPHAT
 
-        inky_display = InkyPHAT(args.color)
+        inky_display = InkyPHAT(args.colour)
+        inky_display.set_border(inky_display.BLACK)
 
         # ensure the image is using the correct pallet
         pal_img = Image.new("P", (1, 1))
