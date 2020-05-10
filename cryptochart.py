@@ -44,6 +44,14 @@ last_close = quotes[-1][4]
 
 font = ImageFont.truetype("04B_03__.TTF", 8)
 
+BLACK = (0, 0, 0)
+
+if args.colour == "red":
+    PAIR_COLOR = (255, 0, 0)
+else:
+    # yellow
+    PAIR_COLOR = (255, 255, 0)
+
 with io.BytesIO() as f:
     fig.savefig(
         f, dpi=dpi, cmap="bwr", interpolation="none", origin="lower", pad_inches=0
@@ -68,12 +76,10 @@ with io.BytesIO() as f:
         if args.flip:
             inky_display.set_rotation(180)
     else:
-        RED = (255, 0, 0)
-        BLACK = (0, 0, 0)
         text = draw.text
 
     draw.text((148, ypos), "{:.2f}".format(last_close), BLACK, font)
-    draw.text((176, ypos), args.pair, RED, font)
+    draw.text((176, ypos), args.pair, PAIR_COLOR, font)
 
     if args.output:
         img.save(args.output)
