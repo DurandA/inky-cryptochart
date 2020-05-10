@@ -47,11 +47,11 @@ font = ImageFont.truetype("04B_03__.TTF", 8)
 BLACK = (0, 0, 0)
 
 if args.colour == "yellow":
-    PAIR_COLOR = (255, 255, 0)
+    PAIR_COLOUR = (255, 255, 0)
 if args.colour == "black":
-    PAIR_COLOR = (0, 0, 0)
+    PAIR_COLOUR = (0, 0, 0)
 else:
-    PAIR_COLOR = (255, 0, 0)
+    PAIR_COLOUR = (255, 0, 0)
 
 with io.BytesIO() as f:
     fig.savefig(
@@ -80,7 +80,7 @@ with io.BytesIO() as f:
         text = draw.text
 
     draw.text((148, ypos), "{:.2f}".format(last_close), BLACK, font)
-    draw.text((176, ypos), args.pair, PAIR_COLOR, font)
+    draw.text((176, ypos), args.pair, PAIR_COLOUR, font)
 
     if args.output:
         img.save(args.output)
