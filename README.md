@@ -10,13 +10,13 @@ CLI tool to display cryptocurrency candlestick chart on [Pimoroni Inky pHAT](htt
 
 Install the `inky-phat` prerequisites (see [official instructions](https://github.com/pimoroni/inky-phat#installing)):
 
-```
+```bash
 sudo apt-get install python3-pip python3-dev
 ```
 
 Install required packages:
 
-```
+```bash
 sudo pip3 install -r requirements.txt
 ```
 
@@ -33,24 +33,33 @@ The Waveshare HAT requires an extra step since it has a slightly different pinou
 +DC_PIN = 25
 ```
 
+## Additional prereqs for raspbian lite
+
+```bash
+sudo apt-get install -y libopenjp2-7 libatlas-base-dev libtiff5
+```
+
 ## Usage
 
-```
-usage: cryptochart.py [-h] [--pair PAIR] [--flip] [--output OUTPUT]
+```bash
+usage: cryptochart.py [-h] [--pair PAIR] [--flip] [--output OUTPUT] [--color {red,black,yellow}]
 
 optional arguments:
-  -h, --help       show this help message and exit
-  --pair PAIR      currency pair (default: XETHZUSD)
-  --flip           rotate the display (default: False)
-  --output OUTPUT  save plot as png (default: None)
+  -h, --help            show this help message and exit
+  --pair PAIR           currency pair (default: XETHZUSD)
+  --flip                rotate the display (default: False)
+  --output OUTPUT       save plot as png (default: None)
+  --color {red,black,yellow}
+                        ePaper display colour (default: black)
 ```
 
 ## Configure crontab
 
 Use `crontab -e` to add run the cronjob every 15 minutes:
 
-```
+```bash
 */15 * * * * (cd /home/user/inky-cryptochart; python3 cryptochart.py --pair XETHZUSD --flip)
 ```
 
 If you are not familiar with cron, have a look at the excellent [CronHowto](https://help.ubuntu.com/community/CronHowto) wiki to configure it according to your requirements.
+
