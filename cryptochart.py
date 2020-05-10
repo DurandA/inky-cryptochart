@@ -17,6 +17,12 @@ parser.add_argument(
 )
 parser.set_defaults(flip=False)
 parser.add_argument("--output", help="save plot as png")
+parser.add_argument(
+    "--color",
+    default="black",
+    choices=["red", "black", "yellow"],
+    help="ePaper display colour",
+)
 args = parser.parse_args()
 
 yesterday = datetime.now() - timedelta(hours=12)
@@ -48,10 +54,15 @@ with io.BytesIO() as f:
     ypos = 0 if ymax - last_high > last_low - ymin else h - 6
 
     if not args.output:
-        # from inkyphat import RED, BLACK, text, set_image, set_rotation, show
         from inky import InkyPHAT
+
         inky_display = InkyPHAT("yellow")
         inky_display.set_border(inky_display.BLACK)
+
+        # ensure the image is using the correct pallet
+        pal_img = Image.new("P", (1, 1))
+        pal_img.putpalette((255, 255, 255, 0, 0, 0, 255, 0, 0) + (0, 0, 0) * 252)
+        img = image.convert("RGB").quantize(palette=pal_img)
 
         inky_display.set_image(img)
         if args.flip:
