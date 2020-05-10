@@ -7,8 +7,8 @@ dpi = 144
 fig, ax = plt.subplots(figsize=(212 / dpi, 104 / dpi), dpi=dpi)
 fig.subplots_adjust(top=1, bottom=0, left=0.15, right=1)
 
-ticks_font = font_manager.FontProperties(fname="04B_03__.TTF", size=4)
-plt.rcParams["text.antialiased"] = False
+ticks_font = font_manager.FontProperties(fname='04B_03__.TTF', size=4)
+plt.rcParams['text.antialiased'] = False
 
 for label in ax.get_yticklabels():
     label.set_fontproperties(ticks_font)
