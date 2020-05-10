@@ -48,9 +48,10 @@ BLACK = (0, 0, 0)
 
 if args.colour == "red":
     PAIR_COLOR = (255, 0, 0)
-else:
-    # yellow
+elif args.colour == "yellow":
     PAIR_COLOR = (255, 255, 0)
+else:
+    PAIR_COLOR = (0, 0, 0)
 
 with io.BytesIO() as f:
     fig.savefig(
