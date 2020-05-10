@@ -2,3 +2,4 @@ inky==0.0.5
 Pillow==7.1.2
 matplotlib==3.2.1
 mplfinance==0.12.4a0
+requests==2.23.0
