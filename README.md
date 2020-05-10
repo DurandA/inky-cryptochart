@@ -42,15 +42,15 @@ sudo apt-get install -y libopenjp2-7 libatlas-base-dev libtiff5
 ## Usage
 
 ```bash
-usage: cryptochart.py [-h] [--pair PAIR] [--flip] [--output OUTPUT] [--color {red,black,yellow}]
+usage: cryptochart.py [-h] [--pair PAIR] [--flip] [--output OUTPUT] [--colour {red,black,yellow}]
 
 optional arguments:
   -h, --help            show this help message and exit
   --pair PAIR           currency pair (default: XETHZUSD)
   --flip                rotate the display (default: False)
   --output OUTPUT       save plot as png (default: None)
-  --color {red,black,yellow}
-                        ePaper display colour (default: black)
+  --colour {red,black,yellow}
+                        ePaper display colour (default: red)
 ```
 
 ## Configure crontab
