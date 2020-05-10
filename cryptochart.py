@@ -66,7 +66,6 @@ with io.BytesIO() as f:
         from inky import InkyPHAT
 
         inky_display = InkyPHAT(args.colour)
-        inky_display.set_border(inky_display.BLACK)
 
         # ensure the image is using the correct pallet
         pal_img = Image.new("P", (1, 1))
