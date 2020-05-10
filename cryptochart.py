@@ -19,7 +19,7 @@ parser.set_defaults(flip=False)
 parser.add_argument("--output", help="save plot as png")
 parser.add_argument(
     "--colour",
-    default="black",
+    default="red",
     choices=["red", "black", "yellow"],
     help="ePaper display colour",
 )
@@ -46,12 +46,12 @@ font = ImageFont.truetype("04B_03__.TTF", 8)
 
 BLACK = (0, 0, 0)
 
-if args.colour == "red":
-    PAIR_COLOR = (255, 0, 0)
-elif args.colour == "yellow":
+if args.colour == "yellow":
     PAIR_COLOR = (255, 255, 0)
-else:
+if args.colour == "black":
     PAIR_COLOR = (0, 0, 0)
+else:
+    PAIR_COLOR = (255, 0, 0)
 
 with io.BytesIO() as f:
     fig.savefig(
