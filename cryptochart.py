@@ -56,13 +56,12 @@ with io.BytesIO() as f:
     if not args.output:
         from inky import InkyPHAT
 
-        inky_display = InkyPHAT("yellow")
-        inky_display.set_border(inky_display.BLACK)
+        inky_display = InkyPHAT(args.color)
 
         # ensure the image is using the correct pallet
         pal_img = Image.new("P", (1, 1))
         pal_img.putpalette((255, 255, 255, 0, 0, 0, 255, 0, 0) + (0, 0, 0) * 252)
-        img = image.convert("RGB").quantize(palette=pal_img)
+        img = img.convert("RGB").quantize(palette=pal_img)
 
         inky_display.set_image(img)
         if args.flip:
