@@ -4,7 +4,7 @@ from cryptochart.providers import quotes_historical_kraken_ohlc
 import argparse, io
 from datetime import datetime, timedelta
 try:
-    from mpl_finance import candlestick_ohlc
+    from mplfinance.original_flavor import candlestick_ohlc
 except ImportError:
     from matplotlib.finance import candlestick_ohlc
 from PIL import Image, ImageDraw, ImageFont
