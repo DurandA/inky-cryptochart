@@ -9,7 +9,7 @@ except ImportError:
     from matplotlib.finance import candlestick_ohlc
 from PIL import Image, ImageDraw, ImageFont
 
-def main():
+def main(use_inky=True):
     parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("--pair", default='XETHZUSD', help="currency pair")
@@ -45,20 +45,30 @@ def main():
         ypos = 0 if ymax - last_high > last_low - ymin else h - 6
 
         if not args.output:
-            from inkyphat import RED, BLACK, text, set_image, set_rotation, show
-            set_image(i)
+            if not use_inky:
+                from inkyphat import RED, BLACK, set_image as _set_image, show as _show
+                class InkyPHAT():
+                    def __init__(*args):
+                        pass
+                    set_image = staticmethod(_set_image)
+                    show = staticmethod(_show)
+            else:
+                from inky import InkyPHAT
+
+            display = InkyPHAT()
+            display.set_image(i)
+
             if args.flip:
-                set_rotation(180)
+                i = i.transpose(Image.ROTATE_180)
         else:
             RED = (255,0,0)
             BLACK = (0,0,0)
-            text = d.text
 
-        text((148, ypos), '{:.2f}'.format(last_close), BLACK, font)
-        text((176, ypos), args.pair, RED, font)
+        d.text((148, ypos), '{:.2f}'.format(last_close), BLACK, font)
+        d.text((176, ypos), args.pair, RED, font)
 
         if args.output:
             i.save(args.output)
             return
 
-        show()
+        display.show()
