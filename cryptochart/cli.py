@@ -9,6 +9,9 @@ except ImportError:
     from matplotlib.finance import candlestick_ohlc
 from PIL import Image, ImageDraw, ImageFont
 
+from . import fonts, pkg_resources
+
+
 def main():
     parser = argparse.ArgumentParser(
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -35,7 +38,8 @@ def main():
     last_high = quotes[-1][2]
     last_close = quotes[-1][4]
 
-    font = ImageFont.truetype('04B_03__.TTF', 8)
+    ttf = pkg_resources.open_binary(fonts, '04B_03__.TTF')
+    font = ImageFont.truetype(ttf, 8)
 
     with io.BytesIO() as f:
         fig.savefig(f, dpi=dpi, cmap="bwr", interpolation="none", origin="lower", pad_inches=0)

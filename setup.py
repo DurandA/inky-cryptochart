@@ -18,4 +18,4 @@ setup(name='cryptochart',
       entry_points={
           'console_scripts': ['cryptochart = cryptochart.cli:main'],
       },
-      zip_safe=False)
+      zip_safe=True)
