@@ -1,4 +1,4 @@
 inkyphat==0.1.1
-Pillow==4.2.1
+Pillow==8.1.1
 matplotlib==3.2.1
 mplfinance==0.12.4a0
