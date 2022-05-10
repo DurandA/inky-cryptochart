@@ -2,12 +2,22 @@ from datetime import datetime, timedelta
 import matplotlib.pyplot as plt
 from matplotlib import font_manager
 
+try:
+    import importlib.resources as pkg_resources
+except ImportError:
+    # try backported to PY<37 `importlib_resources`
+    import importlib_resources as pkg_resources
+
+from . import fonts
+
+
 w, h = (212, 104)
 dpi = 144
 fig, ax = plt.subplots(figsize=(212/dpi, 104/dpi), dpi=dpi)
 fig.subplots_adjust(top=1, bottom=0, left=0.15, right=1)
 
-ticks_font = font_manager.FontProperties(fname='04B_03__.TTF', size=4)
+with pkg_resources.path(fonts, '04B_03__.TTF') as fpath:
+    ticks_font = font_manager.FontProperties(fname=fpath, size=4)
 plt.rcParams['text.antialiased'] = False
 
 for label in ax.get_yticklabels() :
